@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"GIN-CRUD-SAMPLE-PROJECT/config"
-	"GIN-CRUD-SAMPLE-PROJECT/models"
+	"GO-GIN-GORM-LEARNER-PROJECT/config"
+	"GO-GIN-GORM-LEARNER-PROJECT/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

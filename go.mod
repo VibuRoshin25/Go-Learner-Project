@@ -1,6 +1,6 @@
-module GIN-CRUD-SAMPLE-PROJECT
+module GO-GIN-GORM-LEARNER-PROJECT
 
-go 1.22.5
+go 1.24.4
 
 require (
 	github.com/gin-gonic/gin v1.10.0
