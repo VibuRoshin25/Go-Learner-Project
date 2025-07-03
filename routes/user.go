@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"GIN-CRUD-SAMPLE-PROJECT/controller"
+	"GO-GIN-GORM-LEARNER-PROJECT/controller"
 
 	"github.com/gin-gonic/gin"
 )

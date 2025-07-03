@@ -1,8 +1,8 @@
 package main
 
 import (
-	"GIN-CRUD-SAMPLE-PROJECT/config"
-	"GIN-CRUD-SAMPLE-PROJECT/routes"
+	"GO-GIN-GORM-LEARNER-PROJECT/config"
+	"GO-GIN-GORM-LEARNER-PROJECT/routes"
 
 	"github.com/gin-gonic/gin"
 )
