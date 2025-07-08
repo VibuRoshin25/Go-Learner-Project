@@ -72,6 +72,12 @@ spec:
         - name: learner
           image: viburoshin25/learner:latest
           imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 10
           env:
             - name: DB_HOST
               value: learner-db
