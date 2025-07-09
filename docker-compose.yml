@@ -31,3 +31,8 @@ networks:
 
 volumes:
   learner-vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./learner-vol
+      o: bind
