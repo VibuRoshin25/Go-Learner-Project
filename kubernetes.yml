@@ -43,7 +43,8 @@ spec:
               value: postgres
       volumes:
         - name: learner-db-vol
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: hostpath-pvc
 ---
 # App Service
 apiVersion: v1
