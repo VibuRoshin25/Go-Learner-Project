@@ -31,6 +31,9 @@ spec:
         - name: learner-db
           image: postgres:latest
           imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: learner-db-vol
           env:
             - name: POSTGRES_USER
               value: postgres
@@ -38,6 +41,9 @@ spec:
               value: postgres
             - name: POSTGRES_DB
               value: postgres
+      volumes:
+        - name: learner-db-vol
+          emptyDir: {}
 ---
 # App Service
 apiVersion: v1
@@ -74,7 +80,7 @@ spec:
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: 8080
             periodSeconds: 10
             initialDelaySeconds: 10
