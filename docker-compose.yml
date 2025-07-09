@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=postgres
     networks:
       - app-network
+    volumes:
+      - learner-vol:/var/lib/postgresql/data
 
   app:
     build: .
@@ -26,3 +28,6 @@ services:
 
 networks:
   app-network:
+
+volumes:
+  learner-vol:
