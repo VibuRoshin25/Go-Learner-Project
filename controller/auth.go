@@ -16,6 +16,41 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func SignUp(c *gin.Context) {
+	var req models.User
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+		return
+	}
+
+	// Validate the request payload
+	if req.Email == "" || req.Password == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Email and Password are required"})
+		return
+	}
+
+	// Check if user already exists
+	var existingUser models.User
+	if err := config.DB.Where("email = ?", req.Email).First(&existingUser).Error; err == nil {
+		c.JSON(http.StatusConflict, gin.H{"error": "User already exists"})
+		return
+	}
+
+	// Create new user
+	user := models.User{
+		Email:    req.Email,
+		Password: req.Password,
+	}
+	if err := config.DB.Create(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create user"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "User created successfully",
+	})
+}
+
 func SignIn(c *gin.Context) {
 	var req payload.SignInPayload
 	if err := c.ShouldBindJSON(&req); err != nil {

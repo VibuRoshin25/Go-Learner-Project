@@ -8,10 +8,11 @@ import (
 
 func UserRoute(router *gin.Engine) {
 	router.GET("/health", controller.GetHealth)
-	router.GET("/", controller.GetUsers)
-	router.GET("/:id", controller.GetById)
-	router.POST("/", controller.CreateUser)
-	router.DELETE("/:id", middleware.AuthMiddleware(), controller.DeleteUser)
-	router.PUT("/:id", middleware.AuthMiddleware(), controller.UpdateUser)
+	router.GET("/users", middleware.AuthMiddleware(), controller.GetUsers)
+	router.GET("/users/:id", middleware.AuthMiddleware(), controller.GetById)
+	router.POST("/users", middleware.AuthMiddleware(), controller.CreateUser)
+	router.DELETE("/users/:id", middleware.AuthMiddleware(), controller.DeleteUser)
+	router.PUT("/users/:id", middleware.AuthMiddleware(), controller.UpdateUser)
+	router.POST("/signup", controller.SignUp)
 	router.POST("/signin", controller.SignIn)
 }
