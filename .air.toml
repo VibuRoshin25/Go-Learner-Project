@@ -27,6 +27,13 @@ tmp_dir = "tmp"
   send_interrupt = false
   stop_on_error = false
 
+[env]
+  DB_HOST=localhost
+  DB_USER=postgres
+  DB_PASSWORD=postgres
+  DB_NAME=postgres
+  AUTH_HOST=localhost:8000
+
 [color]
   app = ""
   build = "yellow"

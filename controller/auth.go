@@ -5,7 +5,9 @@ import (
 	"net/http"
 
 	"github.com/VibuRoshin25/Go-Learner-Project/config"
+	"github.com/VibuRoshin25/Go-Learner-Project/models"
 	"github.com/VibuRoshin25/Go-Learner-Project/payload"
+	"gorm.io/gorm"
 
 	"bytes"
 	"encoding/json"
@@ -20,9 +22,29 @@ func SignIn(c *gin.Context) {
 		return
 	}
 
+	// Validate the request payload
+	if req.Email == "" || req.Password == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Email and Password are required"})
+		return
+	}
+
+	// Check Email Password with DB
+	var user models.User
+	if err := config.DB.Where("email = ? AND password = ?", req.Email, req.Password).First(&user).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid email or password"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
+		return
+	}
+
 	// Prepare payload for auth service
-	requestPayload, _ := json.Marshal(req)
-	resp, err := http.Post(config.AuthHost+"/signin", "application/json", bytes.NewBuffer(requestPayload))
+	requestPayload, _ := json.Marshal(payload.GenerateTokenPayload{
+		Email: user.Email,
+		Id:    user.ID,
+	})
+	resp, err := http.Post(config.AuthHost+"/token/generate", "application/json", bytes.NewBuffer(requestPayload))
 	if err != nil || resp.StatusCode != http.StatusOK {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
 		return

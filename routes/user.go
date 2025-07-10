@@ -13,4 +13,5 @@ func UserRoute(router *gin.Engine) {
 	router.POST("/", controller.CreateUser)
 	router.DELETE("/:id", middleware.AuthMiddleware(), controller.DeleteUser)
 	router.PUT("/:id", middleware.AuthMiddleware(), controller.UpdateUser)
+	router.POST("/signin", controller.SignIn)
 }

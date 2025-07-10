@@ -12,6 +12,13 @@ services:
     volumes:
       - learner-vol:/var/lib/postgresql/data
 
+  auth:
+    image: viburoshin25/learner-auth:latest
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
   app:
     build: .
     ports:
@@ -21,8 +28,10 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=server
       - DB_NAME=postgres
+      - AUTH_HOST=auth
     depends_on:
       - db
+      - auth
     networks:
       - app-network
 
