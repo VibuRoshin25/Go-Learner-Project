@@ -7,7 +7,7 @@ type SignInPayload struct {
 
 type GenerateTokenPayload struct {
 	Email string `json:"email"`
-	Id    uint   `json:"id"`
+	Id    uint   `json:"userId"`
 }
 
 type ValidateTokenPayload struct {

@@ -30,17 +30,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		// Create HTTP request
-		req, err := http.NewRequest("POST", config.AuthHost+"/token/validate", bytes.NewBuffer(jsonData))
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
-			c.Abort()
-			return
-		}
-		req.Header.Set("Content-Type", "application/json")
-
-		// Send request
-		httpClient := &http.Client{}
-		resp, err := httpClient.Do(req)
+		resp, err := http.Post("http://"+config.AuthHost+"/token/validate", "application/json", bytes.NewBuffer(jsonData))
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Token validation failed"})
 			c.Abort()

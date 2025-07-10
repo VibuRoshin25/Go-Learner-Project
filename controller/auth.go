@@ -2,6 +2,7 @@ package controller
 
 import (
 	"io"
+	"log"
 	"net/http"
 
 	"github.com/VibuRoshin25/Go-Learner-Project/config"
@@ -44,9 +45,14 @@ func SignIn(c *gin.Context) {
 		Email: user.Email,
 		Id:    user.ID,
 	})
-	resp, err := http.Post(config.AuthHost+"/token/generate", "application/json", bytes.NewBuffer(requestPayload))
+	resp, err := http.Post("http://"+config.AuthHost+"/token/generate", "application/json", bytes.NewBuffer(requestPayload))
 	if err != nil || resp.StatusCode != http.StatusOK {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
+		if err != nil {
+			log.Println("Error calling auth service:", err)
+		} else {
+			log.Println("Auth service returned non-200 status code:", resp.StatusCode)
+		}
 		return
 	}
 	defer resp.Body.Close()
