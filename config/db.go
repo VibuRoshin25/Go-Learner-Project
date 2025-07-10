@@ -1,10 +1,10 @@
 package config
 
 import (
-	"GO-GIN-GORM-LEARNER-PROJECT/models"
 	"fmt"
 	"os"
 
+	"github.com/VibuRoshin25/Go-Learner-Project/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

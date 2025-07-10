@@ -1,10 +1,10 @@
 package main
 
 import (
-	"GO-GIN-GORM-LEARNER-PROJECT/config"
-	"GO-GIN-GORM-LEARNER-PROJECT/routes"
 	"time"
 
+	"github.com/VibuRoshin25/Go-Learner-Project/config"
+	"github.com/VibuRoshin25/Go-Learner-Project/routes"
 	"github.com/gin-gonic/gin"
 )
 

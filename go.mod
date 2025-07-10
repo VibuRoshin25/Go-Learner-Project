@@ -1,4 +1,4 @@
-module GO-GIN-GORM-LEARNER-PROJECT
+module github.com/VibuRoshin25/Go-Learner-Project
 
 go 1.24.4
 

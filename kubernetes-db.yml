@@ -1,0 +1,47 @@
+# DB Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: learner-db
+spec:
+  selector:
+    app: learner-db
+  ports:
+    - protocol: "TCP"
+      port: 5432
+      targetPort: 5432
+  type: LoadBalancer
+---
+# DB Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learner-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: learner-db
+  template:
+    metadata:
+      labels:
+        app: learner-db
+    spec:
+      containers:
+        - name: learner-db
+          image: postgres:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: learner-db-vol
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: postgres
+      volumes:
+        - name: learner-db-vol
+          persistentVolumeClaim:
+            claimName: hostpath-pvc

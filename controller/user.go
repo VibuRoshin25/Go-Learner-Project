@@ -1,10 +1,10 @@
 package controller
 
 import (
-	"GO-GIN-GORM-LEARNER-PROJECT/config"
-	"GO-GIN-GORM-LEARNER-PROJECT/models"
 	"net/http"
 
+	"github.com/VibuRoshin25/Go-Learner-Project/config"
+	"github.com/VibuRoshin25/Go-Learner-Project/models"
 	"github.com/gin-gonic/gin"
 )
 
