@@ -21,6 +21,14 @@ func main() {
 	time.Sleep(5 * time.Second)
 
 	config.Connect()
+
+	logClientConn, err := config.InitLoggerClient()
+	if err != nil {
+		log.Fatal("Failed to initialize logger client:", err)
+	}
+
+	defer logClientConn.Close()
+
 	routes.UserRoute(router)
 	router.Run()
 }

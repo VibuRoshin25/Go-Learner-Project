@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package logger;
+
+option go_package = "./logger";
+
+service Logger {
+  rpc Log (LogRequest) returns (LogResponse);
+}
+
+message LogRequest {
+  string service = 1;
+  string level = 2;
+  string message = 3;
+}
+
+message LogResponse {
+  bool success = 1;
+  string err = 2;
+}
