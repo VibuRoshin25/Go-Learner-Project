@@ -22,9 +22,9 @@ func SignUp(c *gin.Context) {
 	}
 
 	// Validate the request payload
-	if req.Email == "" || req.Password == "" {
-		logs.LogError(c, "Email and Password are required")
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Email and Password are required"})
+	if req.Name == "" || req.Email == "" || req.Password == "" {
+		logs.LogError(c, "Name, Email and Password are required")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Name, Email and Password are required"})
 		return
 	}
 
@@ -39,6 +39,7 @@ func SignUp(c *gin.Context) {
 	// Create new user
 	user := models.User{
 		Email:    req.Email,
+		Name:     req.Name,
 		Password: req.Password,
 	}
 	if err := config.DB.Create(&user).Error; err != nil {
