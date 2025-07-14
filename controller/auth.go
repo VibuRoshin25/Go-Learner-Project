@@ -1,18 +1,14 @@
 package controller
 
 import (
-	"fmt"
-	"io"
 	"net/http"
 
 	"github.com/VibuRoshin25/Go-Learner-Project/config"
 	"github.com/VibuRoshin25/Go-Learner-Project/logs"
 	"github.com/VibuRoshin25/Go-Learner-Project/models"
 	"github.com/VibuRoshin25/Go-Learner-Project/payload"
+	"github.com/VibuRoshin25/Go-Learner-Project/proto/auth"
 	"gorm.io/gorm"
-
-	"bytes"
-	"encoding/json"
 
 	"github.com/gin-gonic/gin"
 )
@@ -85,29 +81,13 @@ func SignIn(c *gin.Context) {
 		return
 	}
 
-	// Prepare payload for auth service
-	requestPayload, _ := json.Marshal(payload.GenerateTokenPayload{
-		Email: user.Email,
-		Id:    user.ID,
+	authResp, err := config.AuthClient.GenerateToken(c, &auth.GenerateTokenRequest{
+		Email:  user.Email,
+		UserId: int64(user.ID),
 	})
-	resp, err := http.Post("http://"+config.AuthHost+"/token/generate", "application/json", bytes.NewBuffer(requestPayload))
-	if err != nil || resp.StatusCode != http.StatusOK {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
-		if err != nil {
-			logs.LogError(c, "Failed to call auth service: "+err.Error())
-		} else {
-			logs.LogError(c, "Auth service returned non-200 status code: "+fmt.Sprintf("%d", resp.StatusCode))
-		}
-		return
-	}
-
-	defer resp.Body.Close()
-
-	body, _ := io.ReadAll(resp.Body)
-	var authResp payload.ValidateTokenPayload
-	if err := json.Unmarshal(body, &authResp); err != nil {
-		logs.LogError(c, "Failed to unmarshal auth service response: "+err.Error())
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid response from auth service"})
+	if err != nil {
+		logs.LogError(c, "Failed to generate token: "+err.Error())
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
 		return
 	}
 

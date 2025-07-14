@@ -2,3 +2,4 @@ data/
 data/db/
 .env
 learner-vol/
+tmp/

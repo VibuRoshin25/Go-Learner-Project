@@ -27,7 +27,15 @@ func main() {
 		log.Fatal("Failed to initialize logger client:", err)
 	}
 
-	defer logClientConn.Close()
+	authClientConn, err := config.InitAuthClient()
+	if err != nil {
+		log.Fatal("Failed to initialize auth client:", err)
+	}
+
+	defer func() {
+		logClientConn.Close()
+		authClientConn.Close()
+	}()
 
 	routes.UserRoute(router)
 	router.Run()
