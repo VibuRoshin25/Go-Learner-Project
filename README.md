@@ -9,8 +9,8 @@ It provides REST APIs for user operations and acts as a gRPC client to other ser
 
 - User CRUD via REST APIs (Go + Gin)
 - gRPC client integration with:
-  - [`vibrox-auth`](https://github.com/your-username/vibrox-auth) – authentication
-  - [`vibrox-echo`](https://github.com/your-username/vibrox-echo) – centralized logging
+  - [`vibrox-auth`](https://github.com/VibuRoshin25/vibrox-auth) – authentication
+  - [`vibrox-echo`](https://github.com/VibuRoshin25/vibrox-echo) – centralized logging
 
 ---
 
@@ -25,7 +25,7 @@ It provides REST APIs for user operations and acts as a gRPC client to other ser
 ### Run Locally
 
 ```bash
-git clone https://github.com/your-username/vibrox-core.git
+git clone https://github.com/VibuRoshin25/vibrox-core.git
 cd vibrox-core
 
 go mod tidy
