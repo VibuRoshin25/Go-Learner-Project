@@ -4,8 +4,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/config"
-	"github.com/VibuRoshin25/Go-Learner-Project/routes"
+	"vibrox-core/config"
+	"vibrox-core/routes"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )

@@ -3,7 +3,8 @@ package config
 import (
 	"os"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/proto/logger"
+	"vibrox-core/proto/logger"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

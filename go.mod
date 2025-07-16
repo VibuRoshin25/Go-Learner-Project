@@ -1,4 +1,4 @@
-module github.com/VibuRoshin25/Go-Learner-Project
+module vibrox-core
 
 go 1.24.4
 

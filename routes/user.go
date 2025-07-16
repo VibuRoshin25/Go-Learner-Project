@@ -1,8 +1,9 @@
 package routes
 
 import (
-	"github.com/VibuRoshin25/Go-Learner-Project/controller"
-	"github.com/VibuRoshin25/Go-Learner-Project/middleware"
+	"vibrox-core/controller"
+	"vibrox-core/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 

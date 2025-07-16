@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/models"
+	"vibrox-core/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

@@ -3,9 +3,10 @@ package controller
 import (
 	"net/http"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/config"
-	"github.com/VibuRoshin25/Go-Learner-Project/logs"
-	"github.com/VibuRoshin25/Go-Learner-Project/models"
+	"vibrox-core/config"
+	"vibrox-core/logs"
+	"vibrox-core/models"
+
 	"github.com/gin-gonic/gin"
 )
 

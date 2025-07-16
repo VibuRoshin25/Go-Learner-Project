@@ -3,11 +3,12 @@ package controller
 import (
 	"net/http"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/config"
-	"github.com/VibuRoshin25/Go-Learner-Project/logs"
-	"github.com/VibuRoshin25/Go-Learner-Project/models"
-	"github.com/VibuRoshin25/Go-Learner-Project/payload"
-	"github.com/VibuRoshin25/Go-Learner-Project/proto/auth"
+	"vibrox-core/config"
+	"vibrox-core/logs"
+	"vibrox-core/models"
+	"vibrox-core/payload"
+	"vibrox-core/proto/auth"
+
 	"gorm.io/gorm"
 
 	"github.com/gin-gonic/gin"

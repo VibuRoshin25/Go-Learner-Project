@@ -4,15 +4,15 @@ import (
 	"context"
 	"log"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/config"
-	"github.com/VibuRoshin25/Go-Learner-Project/proto/logger"
+	"vibrox-core/config"
+	"vibrox-core/proto/logger"
 )
 
 func LogError(ctx context.Context, message string) {
 
 	resp, err := config.LogClient.Log(ctx, &logger.LogRequest{
 		Message: message,
-		Service: "Learner",
+		Service: "core",
 		Level:   "ERROR",
 	})
 	if err != nil {
@@ -25,7 +25,7 @@ func LogError(ctx context.Context, message string) {
 func LogInfo(ctx context.Context, message string) {
 	resp, err := config.LogClient.Log(ctx, &logger.LogRequest{
 		Message: message,
-		Service: "Learner",
+		Service: "core",
 		Level:   "INFO",
 	})
 	if err != nil {

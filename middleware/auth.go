@@ -3,9 +3,9 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/VibuRoshin25/Go-Learner-Project/config"
-	"github.com/VibuRoshin25/Go-Learner-Project/logs"
-	"github.com/VibuRoshin25/Go-Learner-Project/proto/auth"
+	"vibrox-core/config"
+	"vibrox-core/logs"
+	"vibrox-core/proto/auth"
 
 	"github.com/gin-gonic/gin"
 )
