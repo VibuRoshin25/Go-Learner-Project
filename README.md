@@ -1,17 +1,16 @@
-# Vibrox Core
+# vibrox-core
 
-`vibrox-core` is the user management microservice of the **Vibrox** suite.  
-It exposes REST APIs for user operations and communicates with other services via gRPC.
+`vibrox-core` is the user management microservice in the **Vibrox** suite.  
+It provides REST APIs for user operations and acts as a gRPC client to other services.
 
 ---
 
 ## ✨ Features
 
-- Create, read, update, delete (CRUD) users
-- REST API interface using Go + Gin
+- User CRUD via REST APIs (Go + Gin)
 - gRPC client integration with:
-  - `vibrox-auth` for authentication
-  - `vibrox-log` for logging events
+  - [`vibrox-auth`](https://github.com/your-username/vibrox-auth) – authentication
+  - [`vibrox-echo`](https://github.com/your-username/vibrox-echo) – centralized logging
 
 ---
 
@@ -19,9 +18,9 @@ It exposes REST APIs for user operations and communicates with other services vi
 
 ### Prerequisites
 
-- Go 1.21+
-- Docker (for running dependencies like Redis or DB)
-- (Optional) Postgres / MongoDB, depending on your persistence layer
+- Go 1.24+
+- Docker (for local DB, etc.)
+- PostgreSQL
 
 ### Run Locally
 
